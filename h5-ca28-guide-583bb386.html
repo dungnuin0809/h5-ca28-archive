@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>加拿大28 · 知识库介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f7;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .page-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* 顶部标识 */
+        .site-badge {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            border-bottom: 1px solid #dce1e8;
+            padding-bottom: 0.6rem;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .site-badge span:first-child {
+            background: #eef0f3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #4a5568;
+        }
+
+        .version-hint {
+            color: #9aa6b2;
+            font-size: 0.75rem;
+        }
+
+        /* hero 区域 */
+        .hero {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e6eaef;
+            margin-bottom: 2.8rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            color: #1f2a37;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(145deg, #3a4d64, #1f2a37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #4b5b6b;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .hero-desc a {
+            color: #2c5282;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #b7c9dd;
+            font-weight: 500;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+
+        .hero-desc a:hover {
+            color: #1a365d;
+            text-decoration-color: #2c5282;
+        }
+
+        /* 卡片网格 — 目录感布局 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem 1.5rem;
+            border: 1px solid #e2e7ee;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.25s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #cbd5e0;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #edf2f7;
+            border-radius: 14px;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #2d4a6e;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #1f2a37;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #425464;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.2rem 0 0.25rem 1.2rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #7e93aa;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            border-radius: 30px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            color: #3f5468;
+            margin-top: 0.6rem;
+        }
+
+        /* 说明区 + 提示区 两列 */
+        .info-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            border: 1px solid #e2e7ee;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .info-box h2 {
+            font-size: 1.25rem;
+            font-weight: 540;
+            color: #1f2a37;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .info-box h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #7e8e9f;
+            margin-left: 0.3rem;
+        }
+
+        .info-box p {
+            font-size: 0.96rem;
+            color: #3d4e5e;
+            margin-bottom: 0.6rem;
+        }
+
+        .info-box .highlight {
+            background: #f5f8fc;
+            border-left: 3px solid #a0b9d0;
+            padding: 0.7rem 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 0.8rem;
+            font-size: 0.94rem;
+        }
+
+        .tip-box {
+            background: #f9fafc;
+            border: 1px dashed #c8d4e0;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+        }
+
+        .tip-box h2 {
+            font-size: 1.25rem;
+            font-weight: 540;
+            color: #1f2a37;
+            margin-bottom: 0.6rem;
+        }
+
+        .tip-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tip-box ul li {
+            padding: 0.3rem 0 0.3rem 1.4rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #3d4e5e;
+        }
+
+        .tip-box ul li::before {
+            content: "›";
+            position: absolute;
+            left: 0.1rem;
+            color: #6f8aa3;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* 相关信息区 FAQ 摘要 */
+        .related-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem 2.2rem;
+            border: 1px solid #e2e7ee;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.5rem;
+        }
+
+        .related-section h2 {
+            font-size: 1.2rem;
+            font-weight: 540;
+            color: #1f2a37;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f0f3f7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.15rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .faq-q::before {
+            content: "❓";
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #536573;
+            padding-left: 1.6rem;
+            margin-top: 0.2rem;
+        }
+
+        .faq-a a {
+            color: #2c5282;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c6d3e3;
+        }
+
+        /* 尾注 */
+        .footer-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: #8d9bab;
+            border-top: 1px solid #dce2ea;
+            padding-top: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem 0.75rem 2rem;
+            }
+
+            .hero {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .info-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-section {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero-desc {
+                font-size: 0.95rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- 简洁标识 -->
+    <div class="site-badge">
+        <span>📘 知识库 · 加拿大28</span>
+        <span class="version-hint">稳定入口说明</span>
+    </div>
+
+    <!-- hero 区域：温和介绍 + 嵌入链接 -->
+    <div class="hero">
+        <h1><em>加拿大28</em> · 信息索引</h1>
+        <div class="hero-desc">
+            如果你正在寻找关于<strong>加拿大28</strong>的稳定信息起点，这个页面整理了常见的内容分区与使用提示。
+            站点 <a href="https://h5-ca28.com">加拿大28</a> 提供了基础的数据参考与结构说明，适合作为常访问的页面之一。
+            以下卡片与分区可以帮助你快速了解各个模块的定位。
+        </div>
+    </div>
+
+    <!-- 卡片网格：目录感布局 四块 -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>玩法概览</h3>
+            <p>汇总了常见规则、周期与数字范围说明，适合新用户快速建立基础认知。</p>
+            <span class="tag">框架参考</span>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>数据参考</h3>
+            <p>包含历史简要统计与分布特征，用于观察趋势，不构成任何预测。</p>
+            <span class="tag">信息汇总</span>
+        </div>
+        <div class="card">
+            <div class="card-icon">🧭</div>
+            <h3>页面导航</h3>
+            <ul>
+                <li>说明区 · 基础释义</li>
+                <li>提示区 · 使用建议</li>
+                <li>FAQ 摘要 · 常见疑问</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔍</div>
+            <h3>相关资源</h3>
+            <p>推荐在 <a href="https://h5-ca28.com">加拿大28</a> 站点内查看更多分类内容，结构清晰。</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 两列并排 -->
+    <div class="info-panel">
+        <div class="info-box">
+            <h2>📖 说明区 <small>基础释义</small></h2>
+            <p><strong>加拿大28</strong> 是一种基于数字排列的参考游戏，其开奖数据源自公共随机源。页面内容以知识整理为主，不保证实时性。</p>
+            <p>站点 <a href="https://h5-ca28.com">加拿大28</a> 首页提供了模块入口和概要介绍，可作为日常浏览的固定页面。</p>
+            <div class="highlight">
+                💡 建议将常用页面加入浏览器收藏夹，以便快速定位。
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h2>📌 提示区</h2>
+            <ul>
+                <li>浏览时请留意页面版本与更新日期。</li>
+                <li>所有数据仅供个人参考，不构成决策依据。</li>
+                <li>网络环境可能影响加载速度，建议使用稳定的连接。</li>
+                <li>若遇到显示问题，可尝试清理缓存或更换浏览器。</li>
+                <li>保持理性思考，合理安排时间与注意力。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 相关信息区 —— FAQ 摘要 -->
+    <div class="related-section">
+        <h2>📎 相关信息 · 常见摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">加拿大28 的数据来源是什么？</div>
+            <div class="faq-a">基于公开的随机数生成算法，每期结果独立。具体可参考站点 <a href="https://h5-ca28.com">加拿大28</a> 内的说明。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">页面内容多久更新一次？</div>
+            <div class="faq-a">知识库部分会定期核对，确保描述准确。实时数据请以站点首页展示为准。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">如何快速查找某个概念？</div>
+            <div class="faq-a">建议使用浏览器的页面内搜索功能（Ctrl+F / Cmd+F），输入关键词如“加拿大28”即可定位。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">是否有移动端适配？</div>
+            <div class="faq-a">当前页面已针对手机与平板做响应式布局，在 <a href="https://h5-ca28.com">加拿大28</a> 也有较好的浏览体验。</div>
+        </div>
+    </div>
+
+    <!-- 尾注 -->
+    <div class="footer-note">
+        知识库页面 · 信息整合参考 · 保持开放与审慎
+    </div>
+
+</div>
+
+</body>
+</html>
